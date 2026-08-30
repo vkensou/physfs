@@ -6,12 +6,12 @@
  *  This file written by Rob Loach (@RobLoach).
  */
 
-#define __PHYSICSFS_INTERNAL__
-#include "physfs_internal.h"
-
 #ifdef PHYSFS_PLATFORM_SDL3
 
 #include <SDL3/SDL.h>
+
+#define __PHYSICSFS_INTERNAL__
+#include "physfs_internal.h"
 
 /**
  * Context for enumeration.
