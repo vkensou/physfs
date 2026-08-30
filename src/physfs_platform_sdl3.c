@@ -83,8 +83,14 @@ char *__PHYSFS_platformCalcBaseDir(const char *argv0)
 char *__PHYSFS_platformCalcUserDir(void)
 {
     const char *home = SDL_GetUserFolder(SDL_FOLDER_HOME);
+    char *retval;
+    if (home != NULL)
+        return __PHYSFS_strdup(home);
+    home = SDL_GetPrefPath("PhysicsFS", "PhysicsFS");
     BAIL_IF(home == NULL, PHYSFS_ERR_OS_ERROR, NULL);
-    return __PHYSFS_strdup(home);
+    retval = __PHYSFS_strdup(home);
+    SDL_free((void *) home);
+    return retval;
 } /* __PHYSFS_platformCalcUserDir */
 
 char *__PHYSFS_platformCalcPrefDir(const char *org, const char *app)
